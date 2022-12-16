@@ -1,5 +1,8 @@
 <h1>Beer List</h1>
+<div class="beer-container">
 {{#each beersFromApi}}
+    <div class="individual-beer">
     {{>beerdetails this}}
-    <br><br>
+    </div>
 {{/each}}
+</div>
