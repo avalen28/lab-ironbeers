@@ -15,7 +15,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Register the location for handlebars partials here:
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
-// hbs.registerPartials(__dirname + '/views/partials');
 
 // Add the route handlers here:
 
@@ -39,6 +38,15 @@ app.get('/random-beer', (req, res) => {
       res.render('random-beer', randomBeerFromApi[0]);
     })
     .catch(error => console.log(error));
+});
+
+app.get('/beers/:beerId', (req, res) => {
+  // el beerId será el que cuando cliquemos en la imagen, esta lo escribirá en la URL
+  const id = req.params.beerId.replace('beer-', ''); // cogemos el parametro de la request y le quitamos todo lo que no es el id en si
+  punkAPI
+    .getBeer(id)
+    .then(individualBeer => res.render('individual-beer', individualBeer[0])) // nos quedamos con la posición 0 porque viene en un array aunque sea solo uno
+    .catch(err => console.log(err));
 });
 
 app.listen(3000, () => console.log('🏃‍ on port 3000'));

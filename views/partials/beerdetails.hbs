@@ -1,0 +1,10 @@
+<h1>{{name}}</h1>
+{{#if image_url}}
+<a href="/beers/beer-{{id}}">
+    <img src="{{image_url}}" alt="random beer img">
+</a>
+{{else}}
+<img src="/images/beer.png" alt="beer logo">
+{{/if}}
+<p>{{description}}</p>
+<p>{{tagline}}</p>
